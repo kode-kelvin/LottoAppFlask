@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+<!-- body -->
+{% block content %}
+<!--  -->
+<div class="container" style="margin-bottom: 200px">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="pills-home-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-home"
+        type="button"
+        role="tab"
+        aria-controls="pills-home"
+        aria-selected="true"
+        >My Details</button
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="pills-profile-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-profile"
+        type="button"
+        role="tab"
+        aria-controls="pills-profile"
+        aria-selected="false"
+        >My Bets</button
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="pills-contact-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-contact"
+        type="button"
+        role="tab"
+        aria-controls="pills-contact"
+        aria-selected="false"
+        >Settings</button
+      >
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="pills-home"
+      role="tabpanel"
+      aria-labelledby="pills-home-tab"
+      ><div class="card" style="width: 20rem">
+        <div class="card-header">Username: {{current_user.username}} </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Email: {{current_user.email}}</li>
+          <li class="list-group-item">Role: {{current_user.role}}</li>
+        </ul>
+        <li class="list-group-item">Account Balance: {{cash}}</li>
+      </div></div
+    >
+    <div
+      class="tab-pane fade"
+      id="pills-profile"
+      role="tabpanel"
+      aria-labelledby="pills-profile-tab"
+      ><table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Bet Date</th>
+            <th scope="col">Bet Number</th>
+            <th scope="col">Bet Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bet in data %}
+          <tr>
+            <th scope="row">1</th>
+            <td>{{bet.bet_date.strftime("%b %d %Y %H:%M:%S")}}</td>
+            <td>{{ bet.bet }}</td>
+            <td>{{bet.id}}</td>
+
+            <!-- money -->
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div
+    >
+
+    <div
+      class="tab-pane fade"
+      id="pills-contact"
+      role="tabpanel"
+      aria-labelledby="pills-contact-tab"
+    >
+      <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <div class="form-group">
+            {{ form.username.label(class="form-control-label") }} {% if
+            form.username.errors %} {{ form.username(class="form-control
+            form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.username.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+            {% else %} {{ form.username(class="form-control form-control-lg") }}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.email.label(class="form-control-label") }} {% if
+            form.email.errors %} {{ form.email(class="form-control
+            form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+            {% else %} {{ form.email(class="form-control form-control-lg") }} {%
+            endif %}
+          </div>
+          <!-- password -->
+          <div class="form-group">
+            {{ form.password.label(class="form-control-label") }} {% if
+            form.password.errors %} {{ form.password(class="form-control
+            form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+            {% else %} {{ form.password(class="form-control form-control-lg") }}
+            {% endif %}
+          </div>
+        </fieldset>
+        <br />
+        <div class="form-group">
+          {{ form.submit(class="btn btn-outline-primary") }}
+        </div>
+      </form></div
+    >
+  </div>
+</div>
+
+{% endblock %}

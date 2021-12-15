@@ -1,0 +1,44 @@
+Pages of the website
+
+1. Profile page (
+    user details
+    user bets
+    win
+    lost
+    account balance
+    update details - password, username, email
+
+)
+
+
+2. Result page (
+    recent draws - more list
+)
+
+
+3. Home page (
+    show count down to next draw
+    show other details
+    place bet
+)
+
+
+4. Register (
+    create account
+    sign-in link
+
+)
+
+
+4. Login (
+    login account
+    create account link
+
+)
+
+
+5. Place bet (
+    enter own number
+    system-generated number
+
+)

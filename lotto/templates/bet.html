@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<!-- top -->
+{% block content %}
+<!-- body -->
+<div class="col-lg-5 container" style="margin-bottom: 26px">
+  <br />
+  <h2>Place Bet</h2>
+  <br /><br />
+  <h1>Account Balance: {{cash}}</h1>
+  <br /><br />
+  <span style="color: brown">Your number must be 8 digits</span>
+  <form method="POST" action="">
+    <div class="input-group mb-3">
+      <input
+        type="number"
+        class="form-control"
+        placeholder=""
+        aria-label="Example text with button addon"
+        aria-describedby="button-addon1"
+        name="bet"
+        id="bet"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Place Bet</button>
+    <button type="button" class="btn btn-dark" id="randombet"
+      >Quick Pick</button
+    >
+  </form>
+  <br />
+  {% with messages = get_flashed_messages() %}
+  <!--  -->
+  {% if messages %}
+  <!--  -->
+  {% for msg in messages %}
+  <!--  -->
+  <div class="alert alert-success animate__heartBeat" role="alert">
+    {{msg}}
+  </div>
+  <!--  -->
+  {% endfor %}
+  <!--  -->
+  {% endif %}
+  <!--  -->
+  {% endwith %}
+</div>
+{% endblock %}

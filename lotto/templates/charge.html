@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+<!-- body -->
+{% block content %}
+
+<div class="container" style="margin-bottom: 200px; margin-top: 200px">
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading"> Payment successful!</h4>
+    <hr />
+    <p> Your payment of <strong>${{amount}}</strong> was successful!</p>
+    <p class="mb-0"
+      >Whenever you need to, be sure to use margin utilities to keep things nice
+      and tidy.</p
+    >
+    <hr />
+    <div class="btn-group">
+      <a href="{{url_for('profile')}}" class="btn btn-primary">View Account</a>
+      <a href="{{ url_for('placebet')}}" class="btn btn-primary">Bet Now</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

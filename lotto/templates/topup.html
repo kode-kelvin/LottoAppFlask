@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+<!-- body -->
+{% block content %}
+<!-- body -->
+<div class="container">
+  <div class="col-md-10">
+    <h2 class="display-6 text-center mb-4">Select A Plan</h2>
+    <!-- data -->
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link bronze" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Bronze</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link silver" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Silver</button>
+  </li>
+  <li class="nav-item " role="presentation ">
+    <button class="nav-link gold" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Gold</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    $ 500 - 5000 Credit - 1000 Bonus
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+       $ 700 - 8000 Credit - 1200 Bonus
+  </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+       $ 1000 - 11000 Credit - 1400 Bonus
+  </div>
+</div>
+<br>
+    <!-- form -->
+    <form action="/charge" method="post">
+    <article>
+      <label>
+        <span>Select Plan</span>
+        <br>
+     <select required name="amount" id="amount" class="form-control">
+        <option selected value="500" name="amount" id="amount">$500 --- Bronze Credit</option>
+        <option value="700" name="amount" id="amount">$700 --- Silver Credit</option>
+        <option value="1000" name="amount" id="amount">$1000 --- Gold Credit</option>
+		</select>
+    <br>
+     </label>
+    <!-- email -->
+    <label>
+      <span>Your email </span>
+      <br />
+      <input type="email" name="email" id="email" class="form-control" />
+      <br />
+    </label>
+    <!-- names -->
+    <label>
+      <span>Card holder name </span>
+      
+      <br />
+      <input type="text" name="name" id="name" class="form-control"/>
+      <br />
+    </label>
+  </article>
+
+
+  <script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="{{ key }}"
+    data-description="A Flask Charge"
+    data-amount="800"
+    data-locale="auto"
+  ></script>
+  
+</form>
+  </div>
+</div>
+  <h2 class="display-6 text-center mb-4">Compare plans</h2>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Plans</th>
+      <th scope="col">Credits</th>
+      <th scope="col">Bonus</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Bronze</th>
+      <td>5,000</td>
+      <td>1,000</td>
+      <td>$ 500</td>
+    </tr>
+    <tr>
+      <th scope="row">Silver</th>
+      <td>8,000</td>
+      <td>1,200</td>
+      <td>$ 700</td>
+    </tr>
+    <tr>
+      <th scope="row">Gold</th>
+      <td>11,000</td>
+      <td>1,400</td>
+      <td>$ 1000</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<!-- here -->
+{% endblock %}

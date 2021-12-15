@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+<!--  -->
+{% block content %}
+<style>
+  .dice {
+    height: 6rem;
+
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  }
+</style>
+
+<body>
+  <div class="container" style="margin-top: 120px; margin-bottom: 100px">
+    <h2>Account Balance: {{cash}}</h2>
+    <form method="post" id="todo-form">
+      <label>
+        <span>Your Wager</span>
+        <input type="number" name="wager" id="wager" class="form-control" />
+      </label>
+      <label>
+        <span>Your Guess</span>
+        <input type="number" name="guess" id="guess" class="form-control" />
+      </label>
+      <label>
+        <input
+          type="number"
+          name="test"
+          id="test"
+          class="form-control"
+          hidden
+        />
+      </label>
+
+      <button type="submit" class="btn btn-primary">🎲 Roll dice</button>
+    </form>
+    <br />
+    <img
+      src="static/assets/img/dice-5.png"
+      alt="Playing dice"
+      class="dice"
+      id="diceimg"
+    />
+  </div>
+
+  <!--Jquery Cdn -->
+
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"
+  ></script>
+
+  <script type="text/javascript">
+    $(document).on("submit", "#todo-form", function (e) {
+      console.log("hello");
+
+      const dix = document.getElementById("diceimg");
+
+      const rollOut = document.getElementById("test");
+
+      const dice = Math.trunc(Math.random() * 6) + 1;
+
+      // choose the img
+      dix.src = `static/assets/img/dice-${dice}.png`;
+
+      // add the value
+      rollOut.value = dice;
+
+      // here
+      $(this).attr("src", `static/assets/img/dice-${dice}.png`);
+
+      e.preventDefault();
+
+      $.ajax({
+        type: "POST",
+
+        url: "/quickcash",
+
+        data: {
+          wager: $("#wager").val(),
+          guess: $("#guess").val(),
+          test: $("#test").val(),
+        },
+
+
+        success: function () {
+          alert(`The outcome of the dice roll is ${dice}`);
+        },
+      });
+    });
+  </script>
+
+  {% endblock %}</body
+>
